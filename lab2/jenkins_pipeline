@@ -1,10 +1,49 @@
 pipeline {
     agent any
+    
     stages {
-     stage('Hello') {
-                steps {
-                    echo 'Hello world'
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/EvgeniyPukanovich/mlops_practice.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                dir('lab1') {
+                    sh 'python3 -m venv .venv'
+                    sh '. .venv/bin/activate'
+                    sh 'pip install -r requirements.txt --break-system-packages'
                 }
             }
-     }
+        }
+        stage('Data Collection') {
+            steps {
+                dir('lab1') {
+                    sh 'python3 data_creation.py'
+                }
+            }
+        }
+        stage('Data Preprocessing') {
+            steps {
+                dir('lab1') {
+                    sh 'python3 model_preprocessing.py test/test_data.csv test/test_data_scaled.csv scaler.pkl'
+                    sh 'python3 model_preprocessing.py train/train_data.csv train/train_data_scaled.csv scaler.pkl'
+                }
+            }
+        }
+        stage('Model Training') {
+            steps {
+                dir('lab1') {
+                    sh 'python3 model_preparation.py train/train_data_scaled.csv model.pkl'
+                }
+            }
+        }
+        stage('Model Testing') {
+            steps {
+                dir('lab1') {
+                    sh 'python3 model_testing.py model.pkl test/test_data_scaled.csv'
+                }
+            }
+        }
+    }
 }
