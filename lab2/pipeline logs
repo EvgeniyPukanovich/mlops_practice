@@ -1,0 +1,153 @@
+Started by user admin
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/mlops
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone Repository)
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/mlops/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/EvgeniyPukanovich/mlops_practice.git # timeout=10
+Fetching upstream changes from https://github.com/EvgeniyPukanovich/mlops_practice.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.2'
+ > git fetch --tags --force --progress -- https://github.com/EvgeniyPukanovich/mlops_practice.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 32ecf52bab0d197d9df2f81320a36196b4da2804 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 32ecf52bab0d197d9df2f81320a36196b4da2804 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 32ecf52bab0d197d9df2f81320a36196b4da2804 # timeout=10
+Commit message: "Merge pull request #2 from EvgeniyPukanovich/practice-1"
+ > git rev-list --no-walk 32ecf52bab0d197d9df2f81320a36196b4da2804 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Install Dependencies)
+[Pipeline] dir
+Running in /var/jenkins_home/workspace/mlops/lab1
+[Pipeline] {
+[Pipeline] sh
++ python3 -m venv .venv
+[Pipeline] sh
++ . .venv/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ [ -n  -o -n  ]
++ [ -n  ]
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ [ ! nondestructive = nondestructive ]
++ VIRTUAL_ENV=/var/jenkins_home/workspace/mlops/lab1/.venv
++ export VIRTUAL_ENV
++ _OLD_VIRTUAL_PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++ PATH=/var/jenkins_home/workspace/mlops/lab1/.venv/bin:/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ PS1=(.venv) $ 
++ export PS1
++ VIRTUAL_ENV_PROMPT=(.venv) 
++ export VIRTUAL_ENV_PROMPT
++ [ -n  -o -n  ]
+[Pipeline] sh
++ pip install -r requirements.txt --break-system-packages
+Defaulting to user installation because normal site-packages is not writeable
+Collecting pandas
+  Downloading pandas-2.2.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.0/13.0 MB 11.2 MB/s eta 0:00:00
+Collecting numpy
+  Downloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.3/18.3 MB 11.0 MB/s eta 0:00:00
+Collecting joblib
+  Downloading joblib-1.3.2-py3-none-any.whl (302 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 302.2/302.2 kB 11.1 MB/s eta 0:00:00
+Collecting scikit-learn
+  Downloading scikit_learn-1.4.1.post1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.1/12.1 MB 11.5 MB/s eta 0:00:00
+Collecting python-dateutil>=2.8.2
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 10.9 MB/s eta 0:00:00
+Collecting pytz>=2020.1
+  Downloading pytz-2024.1-py2.py3-none-any.whl (505 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 505.5/505.5 kB 11.4 MB/s eta 0:00:00
+Collecting tzdata>=2022.7
+  Downloading tzdata-2024.1-py2.py3-none-any.whl (345 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 345.4/345.4 kB 10.6 MB/s eta 0:00:00
+Collecting scipy>=1.6.0
+  Downloading scipy-1.12.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.4/38.4 MB 10.0 MB/s eta 0:00:00
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-3.3.0-py3-none-any.whl (17 kB)
+Collecting six>=1.5
+  Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+Installing collected packages: pytz, tzdata, threadpoolctl, six, numpy, joblib, scipy, python-dateutil, scikit-learn, pandas
+  WARNING: The script f2py is installed in '/var/jenkins_home/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed joblib-1.3.2 numpy-1.26.4 pandas-2.2.1 python-dateutil-2.9.0.post0 pytz-2024.1 scikit-learn-1.4.1.post1 scipy-1.12.0 six-1.16.0 threadpoolctl-3.3.0 tzdata-2024.1
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Data Collection)
+[Pipeline] dir
+Running in /var/jenkins_home/workspace/mlops/lab1
+[Pipeline] {
+[Pipeline] sh
++ python3 data_creation.py
+Data creation: Done
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Data Preprocessing)
+[Pipeline] dir
+Running in /var/jenkins_home/workspace/mlops/lab1
+[Pipeline] {
+[Pipeline] sh
++ python3 model_preprocessing.py test/test_data.csv test/test_data_scaled.csv scaler.pkl
+Model preprocessing: Done
+[Pipeline] sh
++ python3 model_preprocessing.py train/train_data.csv train/train_data_scaled.csv scaler.pkl
+Model preprocessing: Done
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Model Training)
+[Pipeline] dir
+Running in /var/jenkins_home/workspace/mlops/lab1
+[Pipeline] {
+[Pipeline] sh
++ python3 model_preparation.py train/train_data_scaled.csv model.pkl
+Model preparation: Done
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Model Testing)
+[Pipeline] dir
+Running in /var/jenkins_home/workspace/mlops/lab1
+[Pipeline] {
+[Pipeline] sh
++ python3 model_testing.py model.pkl test/test_data_scaled.csv
+Model score (R^2):  0.8215900327293333
+Model testing: Done
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
