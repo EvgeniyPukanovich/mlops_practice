@@ -1,0 +1,17 @@
+name: Build and Tag mlops Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and tag image
+        uses: docker/build-push-action@v3
+        with:
+          push: false
+          tags: mlops-image:${{ github.sha }}-${{ github.ref_name }}
