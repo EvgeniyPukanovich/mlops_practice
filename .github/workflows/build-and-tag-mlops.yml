@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - practice-3
 
 jobs:
   build-and-tag:
