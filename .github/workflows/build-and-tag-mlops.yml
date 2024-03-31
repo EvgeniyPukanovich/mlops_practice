@@ -14,5 +14,6 @@ jobs:
       - name: Build and tag image
         uses: docker/build-push-action@v3
         with:
+          context: ./lab3
           push: false
           tags: mlops-image:${{ github.sha }}-${{ github.ref_name }}
