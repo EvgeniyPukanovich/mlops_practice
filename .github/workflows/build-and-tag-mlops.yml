@@ -23,4 +23,4 @@ jobs:
         with:
           context: ./lab3
           push: true
-          tags: mlops-image:${{ github.sha }}-${{ github.ref_name }}
+          tags: capybara777/mlops_practice:${{ github.sha }}-${{ github.ref_name }}
