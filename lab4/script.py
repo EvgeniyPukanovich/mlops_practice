@@ -30,9 +30,13 @@ titanic_df = create_titanic_dataset()
 # Сохранение исходного датасета в DVC
 titanic_df.to_csv('data/titanic.csv', index=False)
 
- # Добавление пропущенных значений в возраст
- # titanic_subset.loc[titanic_subset['age'].isnull(), 'age'] = np.random.randint(1, 80, size=titanic_subset['age'].isnull().sum())
+# Добавление пропущенных значений в возраст
 
+titanic_df = pd.read_csv("data/titanic.csv")
+titanic_subset = titanic_df[['pclass', 'sex', 'age']].copy()
+titanic_subset.loc[titanic_subset['age'].isnull(), 'age'] = np.random.randint(1, 80, size=titanic_subset['age'].isnull().sum())
+
+titanic_subset.to_csv('data/titanic.csv', index=False)
 
 # !dvc add data/titanic.csv
 
