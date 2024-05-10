@@ -21,7 +21,7 @@ def fill_missing_age(df):
 
 # Создание нового признака с использованием one-hot-encoding для признака "Sex"
 def one_hot_encoding(df):
-    df_encoded = pd.get_dummies(df, columns=['Sex'])
+    df_encoded = pd.get_dummies(df, columns=['sex'])
     return df_encoded
 
 # Загрузка исходного датасета
@@ -52,7 +52,8 @@ titanic_subset.to_csv('data/titanic.csv', index=False)
 # # !git push origin master
 
 # # Создание нового признака с использованием one-hot-encoding для признака "Sex"
-# titanic_encoded_df = one_hot_encoding(titanic_filled_df)
+titanic_encoded_df = one_hot_encoding(titanic_subset)
+titanic_encoded_df.to_csv('data/titanic.csv', index=False)
 
 # # Сохранение закодированного датасета в DVC
 
